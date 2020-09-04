@@ -1,28 +1,28 @@
-# A starter webpack project for React
+# Todo list Kata
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, consider these steps:
+This is a kata to practice everything you've learned in the first five weeks of bootcamp.
 
-* Fork this repo
-* Rename your repo according to the app you're building
+## Your mission is
 
-```sh
-git clone https://github.com/[your-account]/[your-app].git
-cd [your-app] && npm i
-```
+Build a todo list where a user can view / add / edit / delete todo items using react and a local api.
 
-To start the development server with a watcher that rebuilds your code, run `npm run dev`. The assets built by webpack are placed in `server/public`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
+## Recommended strategy
 
-Additional components should be placed in `client/components`.
-
-## Separate client/server
-
-The boilerplate is also set up to host the client using `webpack-dev-server` with hot module reloading etc. To use this method, in one terminal run:
-```sh
-npm run client
-```
-and in the other:
-```sh
-npm run server
-```
-The client will be available on http://localhost:8080 and the server on http://localhost:3000. Note that you will still need to manage CORS between the two, as they are on different ports.
+1. Tackle the project using vertical slices that are fully functional
+  1. User can view a list of tasks from the database
+  2. User can add a task
+  3. User can edit a task
+  4. User can delete a task
+  5. User can complete a task
+  6. User can view all completed tasks
+ 
+2. Code from the outside in
+  1. Start by building the html of a components render method
+  2. Add event handlers for any interactive elements
+  3. Build the client side api code
+  4. Create the server side api code
+  5. Create your database migrations / seeds 
+  6. Create your knex code
+  
+3. Test each step as you build it
 
