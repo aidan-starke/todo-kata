@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    background-image: url('./images/sakura.jpg');
+    background-size: cover;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+div {
+    color: pink;
+}
