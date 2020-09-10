@@ -7,4 +7,8 @@ function getTasks(db = database) {
     return db('tasks').select()
 }
 
-module.exports = {getTasks}
+function saveTask({name}, db = database) {
+    return db('tasks').insert({name})
+}
+
+module.exports = {getTasks, saveTask}
