@@ -1,17 +1,19 @@
 const path = require('path')
 const express = require('express')
 
+const {getTasks} = require('./db')
+
 const server = express()
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, './public')))
 
 server.get('/api/v1/tasks', (req, res) => {
-    const tasks = [
-        { id: 1, name: 'record video' },
-        { id: 2, name: 'facilitate checkout circle' }
-    ]
-    res.json(tasks)
+    getTasks()
+        .then(tasks => res.json(tasks))
+        .catch(err => {
+            res.status(500).send('something went wrong')
+        })
 })
 
 module.exports = server

@@ -40,3 +40,15 @@ test("get tasks from api when component mounts", async () => {
     expect(store.dispatch).toHaveBeenCalled()
     expect(store.dispatch.mock.calls[0][0].type).toBe(SET_TASKS)
 })
+
+test("console logs error from api client", async () => {
+    jest.spyOn(console, 'log').mockImplementation(() => {})
+
+    fetchTasks.mockImplementation(() => Promise.reject('internal server error'))
+    render(<Provider store={store}><App/></Provider>)
+    await waitFor(() => fetchTasks.mock.calls.length == 1)
+    expect(store.dispatch).not.toHaveBeenCalled()
+    expect(console.log).toHaveBeenCalledWith('internal server error')
+
+    console.log.mockReset()
+})
