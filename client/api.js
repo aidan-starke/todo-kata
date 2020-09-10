@@ -8,4 +8,5 @@ export function fetchTasks() {
 export function addTask(name) {
     return request.post('/api/v1/tasks')
         .send({name})
+        .then(res => res.body.id)
 }

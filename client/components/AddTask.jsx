@@ -1,9 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
-import { addTask } from '../api'
+import {setTasks} from '../actions'
+import { addTask, fetchTasks } from '../api'
 
-export default class AddTask extends React.Component {
+class AddTask extends React.Component {
     state = {
         name: ''
     }
@@ -16,6 +17,12 @@ export default class AddTask extends React.Component {
 
     submit = () => {
         addTask(this.state.name)
+            .then(() => {
+                return fetchTasks()
+            })
+            .then((tasks) => {
+                this.props.dispatch(setTasks(tasks))
+            })
     }
 
     render() {
@@ -27,5 +34,6 @@ export default class AddTask extends React.Component {
             </>
         )
     }
-
 }
+
+export default connect()(AddTask)
