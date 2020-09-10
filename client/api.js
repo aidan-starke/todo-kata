@@ -5,6 +5,7 @@ export function fetchTasks() {
         .then(res => res.body)
 }
 
-export function addTask(taskName) {
-    console.log(taskName)
+export function addTask(name) {
+    return request.post('/api/v1/tasks')
+        .send({name})
 }

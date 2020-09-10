@@ -1,5 +1,5 @@
 import nock from 'nock'
-import {fetchTasks} from './api'
+import {fetchTasks, addTask} from './api'
 
 test("fetchTasks from server", () => {
     nock(/localhost/)
@@ -10,5 +10,16 @@ test("fetchTasks from server", () => {
         .then(tasks => {
             expect(tasks.length).toBe(1)
             expect(tasks[0].name).toBe('eat a banana')
+        })
+})
+
+test('add task posts to server', () => {
+    const scope = nock(/localhost/)
+        .post('/api/v1/tasks')
+        .reply(201)
+
+    return addTask({name: 'test task'})
+        .then(() => {
+            expect(scope.isDone()).toBe(true)
         })
 })
