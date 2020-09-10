@@ -1,9 +1,11 @@
 import React from 'react'
 import {FaMinusCircle} from 'react-icons/fa'
+import {connect} from 'react-redux'
 
+import {removeTask} from '../actions'
 import {deleteTask} from '../api'
 
-export default class Task extends React.Component {
+class Task extends React.Component {
     state = {
         showControls : false
     }
@@ -17,9 +19,10 @@ export default class Task extends React.Component {
     }
 
     deleteTask = () => {
-        deleteTask(this.props.task.id)
+        let {id}  = this.props.task
+        deleteTask(id)
             .then(() => {
-                //TBD
+                this.props.dispatch(removeTask(id))
             })
     }
 
@@ -43,3 +46,5 @@ export default class Task extends React.Component {
     }
 
 }
+
+export default connect()(Task)
