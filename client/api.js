@@ -12,5 +12,6 @@ export function addTask(name) {
 }
 
 export function deleteTask(id) {
-    return Promise.resolve('done')
+    return request.delete('/api/v1/tasks/' + id)
+        .then(res => res.body)
 }
