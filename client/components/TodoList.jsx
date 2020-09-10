@@ -1,16 +1,22 @@
 import React from 'react'
 
-const TodoList = props => {
-    const list = props.list
+import { connect } from 'react-redux'
 
+const TodoList = ({tasks}) => {
     return (
         <div>
             <h2>Todo List</h2>
             <ul>
-                {list.map((item, i) => <li key={i}>{item}</li>)}
+                {tasks.map(item => <li key={item.id}>{item.task}</li>)}
             </ul>
         </div>
     )
 }
 
-export default TodoList
+function mapStateToProps(state) {
+    return {
+        tasks: state.tasks
+    }
+}
+
+export default connect(mapStateToProps)(TodoList)
