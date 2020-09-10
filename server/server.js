@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 
-const {getTasks} = require('./db')
+const {getTasks, saveTask} = require('./db')
 
 const server = express()
 
@@ -13,6 +13,14 @@ server.get('/api/v1/tasks', (req, res) => {
         .then(tasks => res.json(tasks))
         .catch(err => {
             res.status(500).send('something went wrong')
+        })
+})
+
+server.post('/api/v1/tasks', (req, res) => {
+    let {name} = req.body
+    saveTask({name}) 
+        .then((ids) => {
+            res.status(201).json({id: ids[0]})
         })
 })
 
