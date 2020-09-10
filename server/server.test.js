@@ -1,11 +1,12 @@
 import request from 'supertest'
 
 import server from './server'
-import {getTasks, saveTask} from './db'
+import {getTasks, saveTask, deleteTask} from './db'
 
 jest.mock('./db', () => ({
     getTasks: jest.fn(),
-    saveTask: jest.fn()
+    saveTask: jest.fn(),
+    deleteTask: jest.fn()
 }))
 
 describe('GET /api/v1/tasks', () => {
@@ -44,6 +45,19 @@ describe('POST /api/v1/tasks', () => {
 
                 expect(res.status).toBe(201)
                 expect(res.body.id).toBe(3)
+            })
+    })
+})
+
+describe('DELETE /api/v1/tasks/:id', () => {
+    test("calls deleteTask database function", () => {
+        deleteTask.mockImplementation(() => Promise.resolve(1))
+        expect.assertions(2)
+        return request(server)
+            .delete('/api/v1/tasks/1')
+            .then(res => {
+                expect(deleteTask).toHaveBeenCalledWith(1)
+                expect(res.status).toBe(200)
             })
     })
 })

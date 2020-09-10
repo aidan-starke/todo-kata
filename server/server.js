@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 
-const {getTasks, saveTask} = require('./db')
+const {getTasks, saveTask, deleteTask} = require('./db')
 
 const server = express()
 
@@ -21,6 +21,19 @@ server.post('/api/v1/tasks', (req, res) => {
     saveTask({name}) 
         .then((ids) => {
             res.status(201).json({id: ids[0]})
+        })
+})
+
+server.delete('/api/v1/tasks/:id', (req, res) => {
+    let {id} = req.params
+    if (!id) return res.status(400).send("no id specified")
+
+    deleteTask(Number(id))
+        .then((recordsDeleted) => {
+            res.sendStatus(200)
+        })
+        .catch(error => {
+            res.sendStatus(500)
         })
 })
 
