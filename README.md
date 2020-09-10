@@ -1,6 +1,6 @@
 # Todo list Kata
 
-This is a kata to practice everything you've learned in the first five weeks of bootcamp.
+This is a kata to practice everything you've learned in the first six weeks of bootcamp.
 
 ## Your mission is
 
@@ -18,11 +18,12 @@ Build a todo list where a user can view / add / edit / delete todo items using r
  
 ### Code from the outside in
   1. Start by building the html of a components render method
-  2. Add event handlers for any interactive elements
-  3. Build the client side api code
-  4. Create the server side api code
-  5. Create your database migrations / seeds 
-  6. Create your knex code
+  2. Build your reducers and connect your components 
+  3. Add event handlers for any interactive elements
+  4. Build the client side api code
+  5. Create the server side api code
+  6. Create your database migrations / seeds 
+  7. Create your knex code
   
 ### Test each step as you build it
 
