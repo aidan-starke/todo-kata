@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { fetchTasks } from '../api'
 import { setTasks } from '../actions'
 
+import {Task} from './'
+
 class Tasks extends React.Component{
     componentDidMount() {
         fetchTasks()
@@ -19,7 +21,7 @@ class Tasks extends React.Component{
         return (
             <>
             <h1>Task List</h1>
-            <ul>{tasks.map(task => <li key={task.id}>{task.name}</li>)}</ul>
+            <ul>{tasks.map(task => <Task key={task.id} task={task} />)}</ul>
             </>
         )
     }

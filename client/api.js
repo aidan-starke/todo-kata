@@ -10,3 +10,7 @@ export function addTask(name) {
         .send({name})
         .then(res => res.body.id)
 }
+
+export function deleteTask(id) {
+    return Promise.resolve('done')
+}
