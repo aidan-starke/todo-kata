@@ -1,17 +1,23 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-const tasks = [
-  { id: 1, name: 'record video' },
-  { id: 2, name: 'facilitate checkout circle' }
-]
+class App extends React.Component {
 
-const App = () => {
-  return (
-    <>
-    <h1>Task List</h1>
-    <ul>{tasks.map(task => <li key={task.id}>{task.name}</li>)}</ul>
-    </>
-  )
+  render() {
+    const {tasks} = this.props
+    return (
+      <>
+      <h1>Task List</h1>
+      <ul>{tasks.map(task => <li key={task.id}>{task.name}</li>)}</ul>
+      </>
+    )
+  }
 }
 
-export default App
+function mapStateToProps(state) {
+  return {
+    tasks: state.tasks
+  }
+}
+
+export default connect(mapStateToProps)(App)

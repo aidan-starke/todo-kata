@@ -19,7 +19,7 @@ Build a todo list where a user can view / add / edit / delete todo items using r
 ### Code from the outside in
   1. Start by building the html of a components render method
   2. Build your reducers and connect your components 
-  3. Add event handlers for any interactive elements
+  3. Add event handlers for any interactive elements (or react lifecycle methods)
   4. Build the client side api code
   5. Create the server side api code
   6. Create your database migrations / seeds 
