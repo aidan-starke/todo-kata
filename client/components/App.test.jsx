@@ -5,19 +5,26 @@ import {Provider} from 'react-redux'
 import {SET_TASKS} from '../actions'
 import store from '../store'
 import App from './App'
+import {fetchTasks} from '../api'
+
+jest.mock('../api', () => ({
+    fetchTasks: jest.fn()
+}))
 
 jest.spyOn(store, 'getState')
 jest.spyOn(store, 'dispatch')
 
+let tasks = [
+    { id: 1, name: 'record video' },
+    { id: 2, name: 'facilitate checkout circle' },
+    { id: 3, name: 'publish videos to youtube' }
+]
+
 beforeEach(() => {
-    store.getState.mockImplementation(() => ({
-        tasks: [
-            { id: 1, name: 'record video' },
-            { id: 2, name: 'facilitate checkout circle' },
-            { id: 3, name: 'publish videos to youtube' }
-        ]
-    }) )
+    store.getState.mockImplementation(() => ({ tasks }) )
+    fetchTasks.mockImplementation(() => Promise.resolve(tasks))
 })
+
 afterEach(jest.resetAllMocks)
 
 test("displays a task list", () => {
