@@ -1,8 +1,11 @@
-const initialState = [
-    { id: 1, name: 'record video' },
-    { id: 2, name: 'facilitate checkout circle' }
-  ]
+import {SET_TASKS} from '../actions'
 
-export default function(state=initialState, action) {
-    return state
+export default function(state=[], action) {
+  switch(action.type) {
+    case SET_TASKS: 
+      return action.tasks
+
+    default: 
+      return state
+  }
 }

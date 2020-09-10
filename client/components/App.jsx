@@ -1,7 +1,18 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { fetchTasks } from '../api'
+import { setTasks } from '../actions'
 
 class App extends React.Component {
+  componentDidMount() {
+    fetchTasks()
+      .then(tasks => {
+        this.props.dispatch(setTasks(tasks))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   render() {
     const {tasks} = this.props
