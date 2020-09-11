@@ -58,7 +58,7 @@ test("dispatch is called with update task action after saving", async () => {
     let button = screen.getByRole('button')
     fireEvent.click(button)
 
-    expect(editTask).toHaveBeenCalledWith('do more stuff')
+    expect(editTask).toHaveBeenCalledWith(1, 'do more stuff')
 
     await waitFor(() => store.dispatch.mock.calls.length > 0)
 

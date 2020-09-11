@@ -15,3 +15,9 @@ export function deleteTask(id) {
     return request.delete('/api/v1/tasks/' + id)
         .then(res => res.body)
 }
+
+export function editTask(id, name) {
+    return request.patch('/api/v1/tasks/' + id)
+        .send({name})
+        .then(res => res.body)
+}

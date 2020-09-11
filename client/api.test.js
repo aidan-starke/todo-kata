@@ -1,5 +1,5 @@
 import nock from 'nock'
-import {fetchTasks, addTask, deleteTask} from './api'
+import {fetchTasks, addTask, deleteTask, editTask} from './api'
 
 test("fetchTasks from server", () => {
     nock(/localhost/)
@@ -30,6 +30,17 @@ test('delete task', () => {
         .reply(200)
 
     return deleteTask(1)
+        .then(() => {
+            expect(scope.isDone()).toBe(true)
+        })
+})
+
+test('edit task', () => {
+    const scope = nock(/localhost/)
+        .patch('/api/v1/tasks/1', {name: 'do stuff'})
+        .reply(200)
+
+    return editTask(1, 'do stuff')
         .then(() => {
             expect(scope.isDone()).toBe(true)
         })

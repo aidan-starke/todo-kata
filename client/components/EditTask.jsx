@@ -35,10 +35,9 @@ class EditTask extends React.Component {
     submit = () => {
         let {id} = this.props.task
         let {name} = this.state
-        editTask(name)
+        editTask(id, name)
             .then(() => {
                 this.props.dispatch(updateTask(id, name))
-                //TBD
             })
     }
 
