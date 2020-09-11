@@ -31,4 +31,5 @@ test("saves task ", async () => {
     expect(fetchTasks).toHaveBeenCalled()
     expect(store.dispatch).toHaveBeenCalled()
     expect(store.dispatch.mock.calls[0][0].tasks).toEqual(tasks)
+    expect(input.value).toBe('')
 })

@@ -1,7 +1,7 @@
 import knex from 'knex'
 import config from '../knexfile'
 
-const {getTasks, saveTask, deleteTask} = require('./db')
+const {getTasks, saveTask, deleteTask, updateTask} = require('./db')
 
 let db = knex(config.test)
 
@@ -51,4 +51,20 @@ describe('delete task', () => {
                 expect(tasks.length).toBe(3)
             })
     })
+
+})
+
+describe('updateTask', () => {
+    test("updates a task", () => {
+        expect.assertions(2)
+        return updateTask(1, "wash the dogs", db)
+            .then((recordsUpdated) => {
+                expect(recordsUpdated).toBe(1)
+                return db('tasks').where({id: 1}).select().first()
+            })
+            .then(task => {
+                expect(task.name).toBe("wash the dogs")
+            })
+    })
+
 })

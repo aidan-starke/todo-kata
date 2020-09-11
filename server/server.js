@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 
-const {getTasks, saveTask, deleteTask} = require('./db')
+const {getTasks, saveTask, deleteTask, updateTask} = require('./db')
 
 const server = express()
 
@@ -30,6 +30,19 @@ server.delete('/api/v1/tasks/:id', (req, res) => {
 
     deleteTask(Number(id))
         .then((recordsDeleted) => {
+            res.sendStatus(200)
+        })
+        .catch(error => {
+            res.sendStatus(500)
+        })
+})
+
+server.patch('/api/v1/tasks/:id', (req, res) => {
+    let {id} = req.params
+    if (!id) return res.status(400).send("no id specified")
+
+    updateTask(Number(id), req.body.name)
+        .then(recordsUpdated => {
             res.sendStatus(200)
         })
         .catch(error => {

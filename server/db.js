@@ -16,4 +16,9 @@ function deleteTask(id, db = database) {
     return db('tasks').where({id}).delete()
 }
 
-module.exports = {getTasks, saveTask, deleteTask}
+function updateTask(id, name, db = database) {
+    if (!id) return Promise.reject('id must be specified')
+    return db('tasks').where({id}).update({name})
+}
+
+module.exports = {getTasks, saveTask, deleteTask, updateTask}

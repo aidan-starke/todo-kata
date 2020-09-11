@@ -18,6 +18,7 @@ class AddTask extends React.Component {
     submit = () => {
         addTask(this.state.name)
             .then(() => {
+                this.setState({name: ''})
                 return fetchTasks()
             })
             .then((tasks) => {
@@ -25,11 +26,25 @@ class AddTask extends React.Component {
             })
     }
 
+    listenForKeys = (event) => {
+        switch(event.keyCode) {
+            case 13:
+                this.submit()
+                break
+            
+        }
+    }
+
     render() {
         return (
             <>
                 <h2>Add Task</h2>
-                <input name='name' onChange={this.handleChange}/>
+                <input 
+                    name='name' 
+                    onChange={this.handleChange}
+                    onKeyDown={this.listenForKeys}
+                    value={this.state.name}
+                />
                 <button onClick={this.submit}>Create Task</button>
             </>
         )

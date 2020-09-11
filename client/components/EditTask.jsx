@@ -38,6 +38,7 @@ class EditTask extends React.Component {
         editTask(id, name)
             .then(() => {
                 this.props.dispatch(updateTask(id, name))
+                if (this.props.onEscape) this.props.onEscape()
             })
     }
 

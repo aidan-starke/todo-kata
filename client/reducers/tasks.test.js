@@ -1,4 +1,4 @@
-import {setTasks, removeTask} from '../actions'
+import {setTasks, removeTask, updateTask} from '../actions'
 import tasksReducer from './tasks'
 
 test("initial state is an empty array", () => {
@@ -18,4 +18,20 @@ test("REMOVE_TASK action removes a task", () => {
     let action = removeTask(3)
     let newState = tasksReducer(tasks, action)
     expect(newState).toEqual([])
+})
+
+describe('UPDATE_TASK', () => {
+    test("updates a task", () => {
+        let tasks = [{name: 'stuff', id: 3}]
+        let action = updateTask(3, "rock the boat")
+        let newState = tasksReducer(tasks, action)
+        expect(newState[0].name).toEqual("rock the boat")
+    })
+
+    test("does not update other tasks", () => {
+        let tasks = [{name: 'stuff', id: 3}]
+        let action = updateTask(2, "rock the boat")
+        let newState = tasksReducer(tasks, action)
+        expect(newState[0].name).toEqual("stuff")
+    })
 })

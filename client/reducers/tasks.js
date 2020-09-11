@@ -1,4 +1,4 @@
-import {SET_TASKS, REMOVE_TASK} from '../actions'
+import {SET_TASKS, REMOVE_TASK, UPDATE_TASK} from '../actions'
 
 export default function(state=[], action) {
   switch(action.type) {
@@ -7,6 +7,9 @@ export default function(state=[], action) {
 
     case REMOVE_TASK:
       return state.filter(t => t.id != action.id)
+
+    case UPDATE_TASK:
+      return state.map(t => t.id == action.id ? {...t, name: action.name} : t)
 
     default: 
       return state

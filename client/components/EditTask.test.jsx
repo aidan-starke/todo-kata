@@ -65,4 +65,5 @@ test("dispatch is called with update task action after saving", async () => {
     expect(store.dispatch.mock.calls[0][0].type).toBe(UPDATE_TASK)
     expect(store.dispatch.mock.calls[0][0].id).toBe(task.id)
     expect(store.dispatch.mock.calls[0][0].name).toBe('do more stuff')
+    expect(escapeCallback).toHaveBeenCalled()
 })
