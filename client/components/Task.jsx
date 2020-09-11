@@ -1,16 +1,19 @@
 import React from 'react'
-import {FaMinusCircle} from 'react-icons/fa'
+import {FaMinusCircle, FaEdit} from 'react-icons/fa'
 import {connect} from 'react-redux'
 
 import {removeTask} from '../actions'
 import {deleteTask} from '../api'
+import {EditTask} from './'
 
 class Task extends React.Component {
     state = {
-        showControls : false
+        showControls : false,
+        editing: false
     }
 
     showControls = () => {
+        if (this.state.editing) return
         this.setState({showControls: true})
     }
 
@@ -26,21 +29,44 @@ class Task extends React.Component {
             })
     }
 
+    editTask = () => {
+        this.setState({
+            showControls: false,
+            editing: true
+        })
+    }
+
+    hideEditForm = () => {
+        this.setState({
+            showControls: true,
+            editing: false
+        })
+    }
+
     render() {
         const {task} = this.props
-        const {showControls} = this.state
-        const deleteStyle = {color: 'red', marginRight: '7px', cursor: 'pointer'}
+        const {showControls, editing} = this.state
+        const editStyle = {color: 'orange', marginLeft: '7px', cursor: 'pointer'}
+        const deleteStyle = {color: 'red', marginLeft: '7px', cursor: 'pointer'}
         return (
             <li
                 onMouseEnter={this.showControls}
                 onMouseLeave={this.hideControls}
+                style={{height: '45px'}}
             > 
-                { showControls ? <FaMinusCircle 
-                                    style={deleteStyle} 
-                                    onClick={this.deleteTask}
-                                    role='button' 
-                                    /> : '' }
-                {task.name}
+                { editing ? <EditTask task={task} onEscape={this.hideEditForm}/> : task.name}
+                { showControls ? <>
+                    <FaEdit 
+                        style={editStyle}
+                        onClick={this.editTask}
+                        role='button'
+                    />
+                    <FaMinusCircle 
+                        style={deleteStyle} 
+                        onClick={this.deleteTask}
+                        role='button' 
+                        />
+                 </> : '' }
             </li>
         )
     }
