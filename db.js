@@ -4,7 +4,6 @@ const connection = require('knex')(config)
 
 module.exports = {
     getList,
-    getListItemById,
     addListItem,
     removeListItemById,
     editListItem
@@ -12,12 +11,6 @@ module.exports = {
 
 function getList(db = connection) {
     return db('todo-list').select()
-}
-
-function getListItemById(id, db = connection) {
-    return db('todo-list')
-        .where('id', id)
-        .first()
 }
 
 function addListItem(item, db = connection) {

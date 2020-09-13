@@ -19,15 +19,6 @@ test('getList returns all list items', () => {
         })
 })
 
-test('getListItemById returns correct list item', () => {
-    const expected = 'PROFIT'
-
-    return db.getListItemById(3, testDb)
-        .then(item => {
-            expect(item.item).toMatch(expected)
-        })
-})
-
 test('addListItem adds a list item', () => {
     const expected = 4
 
