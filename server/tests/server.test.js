@@ -1,6 +1,6 @@
 import request from 'supertest'
 
-import server from '../../server/server'
+import server from '../server'
 
 import { getList, addListItem, removeListItemById, editListItem } from '../../db'
 
