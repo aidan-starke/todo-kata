@@ -1,10 +1,18 @@
-const initialState = [
-    { id: 1, task: 'test' },
-    { id: 2, task: 'pls' }
-]
+import { GET_TASKS } from '../actions'
+let initialState = []
 
 function viewTasks(state = initialState, action) {
-    return state
+    switch(action.type) {
+        case GET_TASKS:
+            return state
+        // case ADD_TASK:
+        //     return state.concat(action.task)
+        // case DELETE_TASK:
+        //     return ['skrrt']
+        default:
+            return state
+
+    }
 }
 
 export default viewTasks
