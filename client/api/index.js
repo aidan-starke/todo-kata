@@ -14,3 +14,9 @@ export function deleteTaskById(id) {
         .delete(`${url}/${id}`)
         .catch(err => console.log(err.message))
 }
+
+export function addNewTask(task) {
+    return request 
+        .post(`${url}/${task}`)
+        .catch(err => console.log(err.message))
+}

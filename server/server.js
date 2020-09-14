@@ -16,8 +16,8 @@ server.get('/api/v1/tasks', (req, res) => {
         })
 })
 
-server.post('/api/v1/tasks/', (req, res) => {
-    let { task } = req.body
+server.post('/api/v1/tasks/:task', (req, res) => {
+    const { task } = req.params
     db.addListItem(task)
         .then(() => res.sendStatus(201))
         .catch(err => {

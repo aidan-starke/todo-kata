@@ -11,7 +11,8 @@ module.exports = {
 }
 
 function getList(db = connection) {
-    return db('todo-list').select()
+    return db('todo-list')
+        .select()
 }
 
 function getListItemById(id, db = connection) {

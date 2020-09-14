@@ -4,42 +4,59 @@ import { connect } from 'react-redux'
 
 import { getList } from '../api'
 
-import { deleteTask } from '../actions'
+import { setTasks, addTask } from '../actions'
 
-const TodoList = ({ dispatch }) => {
-    const [tasks, setTasks] = useState([])
+import { addNewTask } from '../api'
+
+import Task from './Task'
+
+const TodoList = ({ tasks, dispatch }) => {
     const [isLoaded, setIsLoaded] = useState(false)
-
-    useEffect(() => {
+    const [newTask, setNewTask] = useState('')
+    
+    const loadTasks = () => {
         getList()
-            .then(res => {
+            .then(tasks => {
+                dispatch(setTasks(tasks))
                 setIsLoaded(true)
-                setTasks(res)
             })
-    }, [])
+    }
 
-    const deleteHandler = (id) => {
-        dispatch(deleteTask(id))
-        getList()
-            .then(res => {
-                setTasks(res)
+    useEffect(loadTasks, [])
+
+    const changeHandler = event => {
+        event.preventDefault()
+        setNewTask(event.target.value)
+    }
+
+    const addTaskHandler = event => {
+        event.preventDefault()
+        addNewTask(newTask)
+            .then(() => {
+                dispatch(addTask(newTask))
             })
+        loadTasks()
     }
 
     return (
         <div>
-            <h2>Todo List</h2>
             {isLoaded &&
                 <ul>
-                    {tasks.map(item => <li key={item.id}>{item.item} <input type='checkbox' onChange={() => deleteHandler(item.id)}/></li>)}
+                    {tasks.map(item => item && <li key={item.id}><Task item={item} /></li>)}
                 </ul>
             }
-            {/* <form onSubmit={}>
-                <label for='new-task'>Add a task</label>
-                <input type='text' onChange={}></input>
-            </form> */}
+            <form onSubmit={addTaskHandler}>
+                <input type='text' onChange={changeHandler} />
+                <input type='submit' value='Add task' />
+            </form>
         </div>
     )
 }
 
-export default connect()(TodoList)
+function mapStateToProps(state) {
+    return {
+        tasks: state.tasks
+    }
+}
+
+export default connect(mapStateToProps)(TodoList)

@@ -4,10 +4,10 @@ import TodoList from './TodoList'
 
 const App = () => {
   return (
-    <>
-      <h1>Todo-Kata</h1>
+    <div className='app'>
+      <h1>Todo List</h1>
       <TodoList />
-    </>
+    </div>
   )
 }
 
