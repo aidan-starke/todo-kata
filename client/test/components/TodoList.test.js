@@ -30,6 +30,5 @@ test('renders text box and button, calls getList', () => {
 
     expect(textbox)
     expect(button)
-
     waitFor(() => expect(getList).toHaveBeenCalledTimes(1))
 })
