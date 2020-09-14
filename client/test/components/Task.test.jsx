@@ -5,15 +5,15 @@ import store from '../../store'
 
 import Task from '../../components/Task'
 
-const item = {
+const task = {
     id: 1,
-    item: 'test'
+    item: 'test todo item'
 }
 
-test('renders text box', () => {
-    render(<Provider store={store}><Task item={item}/></Provider>)
+test('renders task', () => {
+    render(<Provider store={store}><Task task={task}/></Provider>)
     
-    const renderedItem = screen.queryByText('test')
+    const renderedItem = screen.queryByText(task.item)
 
     expect(renderedItem)
 })

@@ -2,9 +2,9 @@ import request from 'supertest'
 
 import server from '../server'
 
-import { getList, addListItem, removeListItemById, editListItem } from '../../db'
+import { getList, addListItem, removeListItemById, editListItem } from '../db'
 
-jest.mock('../../db', () => ({
+jest.mock('../db', () => ({
     getList: jest.fn(),
     addListItem: jest.fn(),
     removeListItemById: jest.fn(),
@@ -26,14 +26,14 @@ test('GET api/v1/tasks returns tasks', () => {
 })
 
 test('POST api/v1/tasks adds a list item to db', () => {
-    addListItem.mockImplementation(() => Promise.resolve([3]))
+    addListItem.mockImplementation(() => Promise.resolve(1))
 
     return request(server)
-        .post('/api/v1/tasks/:test')
+        .post('/api/v1/tasks')
+        .send('test')
         .expect(201)
-        .then(res => {
+        .then(() => {
             expect(addListItem).toHaveBeenCalled()
-            expect(res.text).toMatch('Created')
         })
 })
 

@@ -17,7 +17,7 @@ test('DELETE_TASK deletes task by id', () => {
     let state = tasks(testTasks, deleteTask(2))
 
     expect(state.length).toBe(1)
-    expect(state[1]).toBe(undefined)
+    expect(state.find(t => t.id == 2)).toBe(undefined)
 })
 
 test('ADD_TASK adds a task', () => {
