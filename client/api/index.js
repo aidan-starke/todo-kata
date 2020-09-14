@@ -8,3 +8,9 @@ export function getList() {
         .then(res => res.body)
         .catch(err => console.log(err.message))
 }
+
+export function deleteTaskById(id) {
+    return request
+        .delete(`${url}/${id}`)
+        .catch(err => console.log(err.message))
+}

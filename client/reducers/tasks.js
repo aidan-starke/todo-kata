@@ -1,14 +1,11 @@
-import { GET_TASKS } from '../actions'
+import { DELETE_TASK } from '../actions'
+import { deleteTaskById } from '../api'
 let initialState = []
 
 function viewTasks(state = initialState, action) {
-    switch(action.type) {
-        case GET_TASKS:
-            return state
-        // case ADD_TASK:
-        //     return state.concat(action.task)
-        // case DELETE_TASK:
-        //     return ['skrrt']
+    switch (action.type) {
+        case DELETE_TASK:
+            deleteTaskById(action.id)
         default:
             return state
 
