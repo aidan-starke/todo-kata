@@ -16,6 +16,7 @@ server.get('/api/v1/tasks', (req, res) => {
         })
 })
 
+//I would prefer to see this without the task in params and instead getting the task data from the body. Makes it easier to add fields to the task in the future
 server.post('/api/v1/tasks/:task', (req, res) => {
     const { task } = req.params
     db.addListItem(task)

@@ -2,6 +2,8 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
+//I think this file would be better in the server folder
+
 module.exports = {
     getList,
     getListItemById,

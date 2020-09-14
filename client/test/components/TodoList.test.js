@@ -5,6 +5,12 @@ import store from '../../store'
 
 import TodoList from '../../components/TodoList'
 
+//this test is causing errors because api isn't mocked
+//
+//jest.mock('../../api', () => {
+//getList: jest.fn()
+//} etc.
+
 test('renders text box', () => {
     render(<Provider store={store}><TodoList /></Provider>)
     let textbox = screen.getByRole('textbox')
