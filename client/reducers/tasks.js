@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK, SET_TASKS } from '../actions'
+import { SET_TASKS, DELETE_TASK, ADD_TASK } from '../actions'
 
 function viewTasks(state = [], action) {
     switch (action.type) {
