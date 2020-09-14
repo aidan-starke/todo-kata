@@ -29,8 +29,7 @@ test('POST api/v1/tasks adds a list item to db', () => {
     addListItem.mockImplementation(() => Promise.resolve([3]))
 
     return request(server)
-        .post('/api/v1/tasks')
-        .send({ item: 'test item' })
+        .post('/api/v1/tasks/:test')
         .expect(201)
         .then(res => {
             expect(addListItem).toHaveBeenCalled()
