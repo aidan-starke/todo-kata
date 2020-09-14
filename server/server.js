@@ -1,6 +1,6 @@
 const path = require('path')
 const express = require('express')
-const db = require('../db')
+const db = require('./db')
 const server = express()
 
 server.use(express.json())
@@ -16,8 +16,9 @@ server.get('/api/v1/tasks', (req, res) => {
         })
 })
 
-server.post('/api/v1/tasks/:task', (req, res) => {
-    const { task } = req.params
+server.post('/api/v1/tasks', (req, res) => {
+    const { task } = req.body
+    
     db.addListItem(task)
         .then(() => res.sendStatus(201))
         .catch(err => {

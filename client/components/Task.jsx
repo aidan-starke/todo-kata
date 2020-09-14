@@ -6,7 +6,7 @@ import {deleteTaskById} from '../api'
 
 import {deleteTask} from '../actions'
 
-function Task({item, dispatch}) {
+function Task({task, dispatch}) {
 
     const deleteHandler = (id) => {
         deleteTaskById(id)
@@ -15,8 +15,8 @@ function Task({item, dispatch}) {
 
     return (
         <>
-            {item.item}
-            <input type='checkbox' onChange={() => deleteHandler(item.id)} />
+            {task.item}
+            <input type='checkbox' onChange={() => deleteHandler(task.id)} />
         </>
     )
 }

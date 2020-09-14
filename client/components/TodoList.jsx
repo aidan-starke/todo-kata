@@ -13,13 +13,17 @@ import Task from './Task'
 const TodoList = ({ tasks, dispatch }) => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [newTask, setNewTask] = useState('')
-    
+
     const loadTasks = () => {
+        let mounted = true
         getList()
             .then(tasks => {
-                dispatch(setTasks(tasks))
-                setIsLoaded(true)
+                if (mounted) {
+                    dispatch(setTasks(tasks))
+                    setIsLoaded(true)
+                }
             })
+        return () => mounted = false
     }
 
     useEffect(loadTasks, [])
@@ -32,9 +36,7 @@ const TodoList = ({ tasks, dispatch }) => {
     const addTaskHandler = event => {
         event.preventDefault()
         addNewTask(newTask)
-            .then(() => {
-                dispatch(addTask(newTask))
-            })
+            .then(() => dispatch(addTask(newTask)))
         loadTasks()
     }
 
@@ -42,7 +44,7 @@ const TodoList = ({ tasks, dispatch }) => {
         <div>
             {isLoaded &&
                 <ul>
-                    {tasks.map(item => item && <li key={item.id}><Task item={item} /></li>)}
+                    {tasks.map((task, i) => <li key={i}><Task task={task} /></li>)}
                 </ul>
             }
             <form onSubmit={addTaskHandler}>

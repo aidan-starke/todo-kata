@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const url = '/api/v1/tasks'
+const url = 'http://localhost:3000/api/v1/tasks'
 
 export function getList() {
     return request
@@ -15,5 +15,6 @@ export function deleteTaskById(id) {
 
 export function addNewTask(task) {
     return request 
-        .post(`${url}/${task}`)
+        .post(url)
+        .send({task})
 }
