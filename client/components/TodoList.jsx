@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react'
 
 import { connect } from 'react-redux'
 
-import { getList, addNewTask } from '../api'
+// I would import addNewTask at the same time
+//import { addNewTask, getList } from '../api'
+
+import { getList } from '../api'
 
 import { setTasks, addTask } from '../actions'
+
+import { addNewTask } from '../api'
 
 import Task from './Task'
 
