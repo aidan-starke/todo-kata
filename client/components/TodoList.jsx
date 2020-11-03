@@ -8,6 +8,8 @@ import { setTasks, addTask } from '../actions'
 
 import Task from './Task'
 
+import { Button, Form, FormControl, InputGroup } from 'react-bootstrap'
+
 const TodoList = ({ tasks, dispatch }) => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [newTask, setNewTask] = useState('')
@@ -45,10 +47,13 @@ const TodoList = ({ tasks, dispatch }) => {
                     {tasks.map((task, i) => <li key={i}><Task task={task} /></li>)}
                 </ul>
             }
-            <form onSubmit={addTaskHandler}>
-                <input type='text' onChange={changeHandler} />
-                <input type='submit' value='Add task' />
-            </form>
+            <Form onSubmit={addTaskHandler}>
+                <InputGroup size="sm" style={{ width: "500px" }}>
+                    <FormControl onChange={changeHandler} style={{textAlign: "center"}}
+                        aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
+                </InputGroup>
+                <Button variant="dark" type='submit'>Add Task</Button>
+            </Form>
         </div>
     )
 }
