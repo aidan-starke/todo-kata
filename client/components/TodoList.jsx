@@ -49,9 +49,9 @@ const TodoList = ({ tasks, dispatch }) => {
                     {tasks.map((task, i) => <li key={i}><Task task={task} /></li>)}
                 </ul>
             }
-            <Form onSubmit={addTaskHandler}>
+            <Form onSubmit={addTaskHandler} style={{ display: 'inline-block' }}>
                 <InputGroup size="sm" style={{ width: "500px" }}>
-                    <FormControl onChange={changeHandler} style={{textAlign: "center"}}
+                    <FormControl onChange={changeHandler} style={{ marginBottom: '20px' }}
                         aria-label="Small" aria-describedby="inputGroup-sizing-sm" />
                 </InputGroup>
                 <Button variant="dark" type='submit'>Add Task</Button>

@@ -11,8 +11,14 @@ ul {
 
 div {
     color: pink;
+    text-align: center;
+    display: block;
 }
 
 .app {
     padding-top: 50px;
+}
+
+.form-input {
+    margin-bottom: 20px;
 }
