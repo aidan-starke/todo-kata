@@ -1,6 +1,6 @@
 import request from 'superagent'
 
-const url = 'http://localhost:3000/api/v1/tasks'
+const url = 'http://localhost:4000/api/v1/tasks'
 
 export function getList() {
     return request
