@@ -14,7 +14,6 @@
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "reset:db": "knex migrate:latest && knex seed:run",
-    "postinstall": "run-s build reset:db"
   },
   "babel": {
     "presets": [

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { deleteTaskById } from '../api'
 
 import { deleteTask } from '../actions'
+import { Typography } from '@material-ui/core'
 
 function Task({ task, dispatch }) {
 	const deleteHandler = id => {
@@ -12,11 +13,11 @@ function Task({ task, dispatch }) {
 	}
 
 	return (
-		<>
-			{task.item}
+		<div>
+			<Typography variant='button'>{task.item}</Typography>
 			&nbsp;&nbsp;
-			<input type='checkbox' onChange={() => deleteHandler(task.id)} />
-		</>
+			<input type='checkbox' onClick={() => deleteHandler(task.id)} />
+		</div>
 	)
 }
 
