@@ -1,28 +1,32 @@
+div {
+	font-family: 'Montserrat', sans-serif;
+}
+
 body {
-    text-align: center;
-    background-image: url('./images/sakura.jpg');
-    background-size: cover;
+	text-align: center;
+	background-image: url('./images/sakura.jpg');
+	background-size: cover;
 }
 
 ul {
-    list-style: none;
-    padding-left: 0;
+	list-style: none;
+	padding-left: 0;
 }
 
 div {
-    color: pink;
-    text-align: center;
-    display: block;
+	color: pink;
+	text-align: center;
+	display: block;
 }
 
 .app {
-    padding-top: 50px;
+	padding-top: 50px;
 }
 
 .form {
-    display: inline-block;
+	display: inline-block;
 }
 
 .form-input {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }

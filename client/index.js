@@ -5,10 +5,10 @@ import store from './store'
 import App from './components/App'
 
 document.addEventListener('DOMContentLoaded', () => {
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('app')
-  )
+	render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		document.getElementById('app')
+	)
 })
